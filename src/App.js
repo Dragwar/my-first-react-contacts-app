@@ -6,19 +6,19 @@ const contacts = [
     "id": "karen",
     "name": "Karen Isgrigg",
     "handle": "karen_isgrigg",
-    "avatarURL": "http://localhost:5001/karen.jpg"
+    "avatarURL": "./michael.jpg"
   },
   {
     "id": "richard",
     "name": "Richard Kalehoff",
     "handle": "richardkalehoff",
-    "avatarURL": "http://localhost:5001/richard.jpg"
+    "avatarURL": "./ryan.jpg"
   },
   {
     "id": "tyler",
     "name": "Tyler McGinnis",
     "handle": "tylermcginnis",
-    "avatarURL": "http://localhost:5001/tyler.jpg"
+    "avatarURL": "./tyler.jpg"
   }
 ]
 
