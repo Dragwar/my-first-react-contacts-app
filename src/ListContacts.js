@@ -2,10 +2,15 @@ import React from 'react';
 
 class ListContacts extends React.Component {
   render() {
-    console.log(this.props.contacts);
     return (
       <ol className="ListContacts">
-
+        {
+          this.props.contacts.map(contact => (
+            <li key={contact.id} id={contact.id + "-contact"}>
+              {contact.name}
+            </li>
+          ))
+        }
       </ol>
     );
   }
