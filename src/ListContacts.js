@@ -15,7 +15,7 @@ function ListContacts(props) {
               <p className="contact-name">{contact.name}</p>
               <p className="contact-handle">@{contact.handle}</p>
             </div>
-            <button className="contact-remove">Remove</button>
+            <button className="contact-remove" onClick={() => props.removeContact(contact)}>Remove</button>
           </li>
         ))
       }
