@@ -17,6 +17,10 @@ class ListContacts extends Component {
     }));
   };
 
+  clearQuery = () => {
+    this.updateQuery('');
+  }
+
   render() {
     const { query } = this.state;
     const { contacts, removeContact } = this.props;
@@ -41,13 +45,24 @@ class ListContacts extends Component {
             onChange={(event) => this.updateQuery(event.target.value)}
           />
         </div>
+        {
+          showingContacts.length !== contacts.length && (
+            <div className="showing-contacts">
+              <span>
+                Now Showing {showingContacts.length} of {contacts.length}
+              </span>
+              <button onClick={this.clearQuery}>Show all</button>
+            </div>
+          )
+        }
         <ol id="ListContacts" className="contact-list">
           {
             showingContacts.map(contact => (
               <li
                 key={contact.id}
                 className="contact-list-item"
-                id={contact.id + "-contact"}>
+                id={contact.id + "-contact"}
+              >
                 <div
                   className="contact-avatar"
                   style={{
@@ -60,7 +75,8 @@ class ListContacts extends Component {
                 </div>
                 <button
                   className="contact-remove"
-                  onClick={() => removeContact(contact)}>Remove</button>
+                  onClick={() => removeContact(contact)}
+                >Remove</button>
               </li>
             ))
           }
