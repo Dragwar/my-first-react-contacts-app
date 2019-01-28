@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListContacts from './ListContacts';
 import CreateContact from './CreateContact';
+import { Route } from 'react-router-dom';
 import * as ContactsAPI from './utils/ContactsAPI';
 
 class App extends Component {
@@ -25,7 +26,6 @@ class App extends Component {
         "avatarURL": "./tyler.jpg"
       }
     ],
-    screen: 'list',
   };
 
   componentDidMount() {
@@ -34,7 +34,7 @@ class App extends Component {
         contacts: allContacts,
       })))
       .catch(console.warn);
-  }
+  };
 
   removeContact = contact => {
     this.setState(currentState => ({
@@ -47,19 +47,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          this.state.screen === 'list' && (
-            <ListContacts
-              contacts={this.state.contacts}
-              removeContact={this.removeContact}
-            />
-          )
-        }
-        {
-          this.state.screen === 'create' && (
-            <CreateContact />
-          )
-        }
+        <Route exact path="/" render={() => (
+          <ListContacts
+            contacts={this.state.contacts}
+            removeContact={this.removeContact}
+          />
+        )} />
+        <Route exact path="/create" component={CreateContact} />
       </div>
     );
   };
