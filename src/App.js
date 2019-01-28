@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListContacts from './ListContacts';
+import CreateContact from './CreateContact';
 import * as ContactsAPI from './utils/ContactsAPI'
 
 class App extends Component {
@@ -24,19 +25,20 @@ class App extends Component {
         "avatarURL": "./tyler.jpg"
       }
     ],
+    screen: 'create',
   };
 
   componentDidMount() {
     ContactsAPI.getAll()
       .then(allContacts => this.setState(currentState => ({
-        contacts: allContacts
+        contacts: allContacts,
       })))
       .catch(console.warn);
   }
 
   removeContact = contact => {
     this.setState(currentState => ({
-      contacts: currentState.contacts.filter(cont => cont.id !== contact.id)
+      contacts: currentState.contacts.filter(cont => cont.id !== contact.id),
     }));
     ContactsAPI.remove(contact)
       .catch(console.warn);
@@ -45,10 +47,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ListContacts
-          contacts={this.state.contacts}
-          removeContact={this.removeContact}
-        />
+        {
+          this.state.screen === 'list' && (
+            <ListContacts
+              contacts={this.state.contacts}
+              removeContact={this.removeContact}
+            />
+          )
+        }
+        {
+          this.state.screen === 'create' && (
+            <CreateContact />
+          )
+        }
       </div>
     );
   };
