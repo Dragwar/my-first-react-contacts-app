@@ -19,7 +19,7 @@ class ListContacts extends Component {
 
   clearQuery = () => {
     this.updateQuery('');
-  }
+  };
 
   render() {
     const { query } = this.state;
