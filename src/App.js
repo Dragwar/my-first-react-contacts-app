@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListContacts from './ListContacts';
+import * as ContactsAPI from './utils/ContactsAPI'
 
 class App extends Component {
   state = {
@@ -24,6 +25,14 @@ class App extends Component {
       }
     ],
   };
+
+  componentDidMount() {
+    ContactsAPI.getAll()
+      .then(allContacts => this.setState(currentState => ({
+        contacts: allContacts
+      })))
+      .catch(console.warn);
+  }
 
   removeContact = contact => {
     this.setState(currentState => ({

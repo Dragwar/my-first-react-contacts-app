@@ -68,7 +68,8 @@ class ListContacts extends Component {
                   style={{
                     backgroundImage: `url(${contact.avatarURL})`
                   }}
-                ></div>
+                >
+                </div>
                 <div className="contact-details">
                   <p className="contact-name">{contact.name}</p>
                   <p className="contact-handle">@{contact.handle}</p>
@@ -76,7 +77,9 @@ class ListContacts extends Component {
                 <button
                   className="contact-remove"
                   onClick={() => removeContact(contact)}
-                >Remove</button>
+                >
+                  Remove
+                </button>
               </li>
             ))
           }
