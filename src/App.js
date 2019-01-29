@@ -44,6 +44,14 @@ class App extends Component {
       .catch(console.warn);
   };
 
+  CreateContact = contact => {
+    ContactsAPI.create(contact)
+      .then(contact => this.setState(currentState => ({
+        contacts: [contact, ...currentState.contacts],
+      })))
+      .catch(console.warn);
+  };
+
   render() {
     return (
       <div className="App">
@@ -53,7 +61,11 @@ class App extends Component {
             removeContact={this.removeContact}
           />
         )} />
-        <Route exact path="/create" component={CreateContact} />
+        <Route exact path="/create" render={() =>
+          <CreateContact
+            onCreateContact={contact => this.CreateContact(contact)}
+          />
+        } />
       </div>
     );
   };

@@ -13,7 +13,7 @@ class ListContacts extends Component {
   };
 
   updateQuery = (query) => {
-    this.setState((prevState) => ({
+    this.setState(currentState => ({
       query: query.trim(),
     }));
   };
@@ -28,12 +28,13 @@ class ListContacts extends Component {
     let showingContacts;
 
     if (query !== '') {
-      showingContacts = contacts.filter((contact) => (
+      showingContacts = contacts.filter(contact => (
         contact.name.toLowerCase().includes(query.toLowerCase())
       ));
+
     } else {
       showingContacts = contacts;
-    };
+    }
 
     return (
       <div className="list-contacts">
@@ -43,7 +44,7 @@ class ListContacts extends Component {
             type="text"
             placeholder="Search Contacts"
             value={query}
-            onChange={(event) => this.updateQuery(event.target.value)}
+            onChange={event => this.updateQuery(event.target.value)}
           />
           <Link
             to="/create"

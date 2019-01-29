@@ -4,13 +4,13 @@ import ImageInput from './ImageInput';
 import serializeForm from 'form-serialize';
 
 class CreateContact extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    const values = serializeForm(e.target, { hash: true })
+  handleSubmit = event => {
+    event.preventDefault();
+    const values = serializeForm(event.target, { hash: true })
     console.log('form data', values);
 
     if (this.props.onCreateContact) {
-      this.props.onCreateContact(values)
+      this.props.onCreateContact(values);
     }
   };
 
@@ -23,7 +23,7 @@ class CreateContact extends Component {
         >
           Close
         </Link>
-        <form onSubmit={(e) => this.handleSubmit(e)} className="create-contact-form">
+        <form onSubmit={event => this.handleSubmit(event)} className="create-contact-form">
           <ImageInput
             className="create-contact-avatar-input"
             name="avatarURL"
